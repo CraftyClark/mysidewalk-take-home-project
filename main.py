@@ -6,8 +6,8 @@ import itertools
 import sys
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-# my_file = os.path.join(THIS_FOLDER, 'example-input2.csv')
-my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
+my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
+# my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
 
 
 # define the name of the file to read from
