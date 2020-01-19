@@ -156,7 +156,6 @@ def outputToCSV(Dict):
 Dict = {}
 
 response_time = 0
-total_responses = 0
 
 # Create array with values of all calculated response times in given date range
 response_time_array = createResponseTimeArray()
@@ -223,24 +222,16 @@ with open(filename) as csvfile:
                         temp_integer = Dict[key][month]
                         temp_integer += 1
                         Dict[key][month] = temp_integer
-                        total_responses += 1
                     else:
                         Dict[key][month] = 1
-                        total_responses += 1
                 else:
                     # key doesn't not exist, create dictionary element for key, set count to 1
                     Dict[key] = {}
                     Dict[key][month] = 1
-                    total_responses += 1
-
 
 
 
 outputToCSV(Dict)
-
-
-print("total responses: ", total_responses)
-
 
 
 print("Program run time = {} seconds".format(time.time() - starttime))
