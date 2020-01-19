@@ -1,0 +1,26 @@
+Sources used
+
+To handle relative paths on cross-platform
+https://help.pythonanywhere.com/pages/NoSuchFileOrDirectory/
+
+CSV file reading; usage of csv.DictReader
+https://docs.python.org/3/library/csv.html
+
+Using datetime, strptime, and stftime
+https://stackabuse.com/how-to-format-dates-in-python/
+https://docs.python.org/3.2/library/datetime.html
+
+Usage of nested dictionaries
+https://www.geeksforgeeks.org/python-dictionary/
+
+Creating a nested dictionary using a key that does not exist yet
+https://stackoverflow.com/a/44992221/7359221
+
+Calculating percentiles
+https://www.dummies.com/education/math/statistics/how-to-calculate-percentiles-in-statistics/
+
+From nested dictionary to CSV file
+https://stackoverflow.com/questions/38454203/from-nested-dictionary-to-csv-file/38454676
+
+Fix reason for empty lines being written to CSV
+https://sopython.com/canon/97/writing-csv-adds-blank-lines-between-rows/
