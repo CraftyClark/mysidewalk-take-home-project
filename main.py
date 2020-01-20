@@ -176,9 +176,15 @@ print("The 90th percentile value is: ", ninety_percentile_value)
 #     print (response_time_array[x])
 
 with open(filename) as csvfile:  
+    reading_data_logging_count = 0
     data = csv.DictReader(csvfile)
     print("Reading data from input CSV file...")
     for row in data:
+        # create logging for during CSV input
+        reading_data_logging_count += 1
+        if(reading_data_logging_count % 1000000 == 0):
+            print(reading_data_logging_count, " rows of data read from input CSV file")
+
         # example date string: 07/25/2019 07:18:15 PM
 
         # convert date to year/month/day
