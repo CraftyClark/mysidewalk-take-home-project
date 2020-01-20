@@ -15,3 +15,4 @@ maybe try to sort the dictionary by percentile value, if possible. and then I wo
 No wait, sorting is O(n log(n)) so that would be slower than if I just looked through entire dictionary and pulled out values equal to or greater than
 percentile value; 0(n) complexity
 
+At current state the program's runtime is 607 seconds ~ 10 minutes
