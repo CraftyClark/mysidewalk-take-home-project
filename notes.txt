@@ -12,14 +12,19 @@ Done✔  I need to make a decision on how to handle the cases where the received
         I need to remove these 0 seconds instances from my response time array and add them to my error output file.
 
 
-Do I really need to loop through data input file twice?
+Didn't implement✔   ***I went down this path for a bit but decided that trying to sort my dictionary and then loop through it to find the correct index value was more trouble than it was worth.
+                    Also time complexity of 0(2n) ~= 0(n). So I'm not that worried about having to loop through data twice.***
 
-What if the first time I go through I store everything to a dictionary in a way that I don't need to go through again. 
+                    Do I really need to loop through data input file twice?
+                    What if the first time I go through I store everything to a dictionary in a way that I don't need to go through again. 
+                    Use the data in dictionary to first find the 90th percentile value. and then go through dictionary and pull out the rows that have that value or higher.
+                    maybe try to sort the dictionary by percentile value, if possible. and then I won't have to look through entire dictionary in order to find desired values.
+                    No wait, sorting is O(n log(n)) so that would be slower than if I just looked through entire dictionary and pulled out values equal to or greater than
+                    percentile value; 0(n) complexity
 
-Use the data in dictionary to first find the 90th percentile value. and then go through dictionary and pull out the rows that have that value or higher.
+I should clean up my code and remove any unnecesary comment  lines that were for testing purposes
+Also I should create a main function and move stuff there
 
-maybe try to sort the dictionary by percentile value, if possible. and then I won't have to look through entire dictionary in order to find desired values.
-No wait, sorting is O(n log(n)) so that would be slower than if I just looked through entire dictionary and pulled out values equal to or greater than
-percentile value; 0(n) complexity
+At current state the program's runtime is 602 seconds ~ 10 minutes
 
-At current state the program's runtime is 607 seconds ~ 10 minutes
+
