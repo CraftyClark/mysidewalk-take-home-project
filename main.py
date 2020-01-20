@@ -6,8 +6,8 @@ import itertools
 import sys
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
-# my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
+# my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
+my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
 
 
 # define the name of the file to read from
@@ -169,7 +169,7 @@ response_time_array = createResponseTimeArray()
 
 ninety_percentile_value = calculatePercentileIndexValue(response_time_array)
 
-print("90th percentile value: ", ninety_percentile_value)
+print("The 90th percentile value is: ", ninety_percentile_value)
 
 # print("response time array:")
 # for x in range(len(response_time_array)):
@@ -177,6 +177,7 @@ print("90th percentile value: ", ninety_percentile_value)
 
 with open(filename) as csvfile:  
     data = csv.DictReader(csvfile)
+    print("Reading data from input CSV file...")
     for row in data:
         # example date string: 07/25/2019 07:18:15 PM
 
