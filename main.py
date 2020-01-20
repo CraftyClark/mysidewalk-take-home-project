@@ -63,10 +63,17 @@ def checkMonth(dict, key, month):
 def createResponseTimeArray():
 
     response_time_array = []
+    reading_data_logging_count = 0
+    print("Populating array with valid response times...")
 
     with open(filename) as csvfile:  
         data = csv.DictReader(csvfile)
         for row in data:
+            # create logging for during CSV input
+            reading_data_logging_count += 1
+            if(reading_data_logging_count % 1000000 == 0):
+                print(reading_data_logging_count, " rows of data read from input CSV file")
+
             # example date string: 07/25/2019 07:18:15 PM
 
             # convert date to year/month/day
@@ -104,11 +111,13 @@ def createResponseTimeArray():
                         response_time_array.append(response_time)
                     else:
                         savingToDictionary(row, response_time_error_dict)
+    print("Finished creating array of valid response times")
     return response_time_array
 
 
 def calculatePercentileIndexValue(array):
 
+    print("Sorting array of valid response times...")
     # sort in reverse order; smaller times = faster/better response
     array.sort(reverse = True)
 
@@ -127,6 +136,7 @@ def calculatePercentileIndexValue(array):
     # find 90th percentile value from dataset
     ninety_percentile_value = sorted_array[index_value]
 
+    print("90th percentile value has been found")
     return ninety_percentile_value
 
 
