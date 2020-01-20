@@ -24,3 +24,6 @@ https://stackoverflow.com/questions/38454203/from-nested-dictionary-to-csv-file/
 
 Fix reason for empty lines being written to CSV
 https://sopython.com/canon/97/writing-csv-adds-blank-lines-between-rows/
+
+How to sort a dictionary by key or value
+https://thispointer.com/python-how-to-sort-a-dictionary-by-key-or-value/
