@@ -6,8 +6,8 @@ import itertools
 import sys
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
-# my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
+# my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
+my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
 
 
 # define the name of the file to read from
@@ -250,7 +250,7 @@ with open(filename) as csvfile:
             # only continue if the response time is equal or lower than the ninety percentile value
             if response_time <= ninety_percentile_value:
                 savingToDictionary(row, Dict)
-
+    print("Finished reading data from input file")
 
 outputToCSV(Dict, 'main_output.csv', '90th Percentile Response Time')
 outputToCSV(response_time_error_dict, 'errors_output.csv', 'Error: Negative Response Time')

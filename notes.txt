@@ -1,0 +1,17 @@
+Notes:
+
+Done✔ create logging statements
+
+Done✔ Remove response time not greater than zero logging statements
+Done✔ In instances with negative response time values, save data and later print to an output errors CSV
+
+Do I really need to loop through data input file twice?
+
+What if the first time I go through I store everything to a dictionary in a way that I don't need to go through again. 
+
+Use the data in dictionary to first find the 90th percentile value. and then go through dictionary and pull out the rows that have that value or higher.
+
+maybe try to sort the dictionary by percentile value, if possible. and then I won't have to look through entire dictionary in order to find desired values.
+No wait, sorting is O(n log(n)) so that would be slower than if I just looked through entire dictionary and pulled out values equal to or greater than
+percentile value; 0(n) complexity
+
