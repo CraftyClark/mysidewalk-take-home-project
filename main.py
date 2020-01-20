@@ -6,8 +6,8 @@ import itertools
 import sys
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-# my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
-my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
+my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
+# my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
 
 
 # define the name of the file to read from
@@ -103,7 +103,7 @@ def createResponseTimeArray():
                         # append the response time for the current row into an array
                         response_time_array.append(response_time)
                     else:
-                        print("response time was not greater than zero: ", response_time, " received time: ", received_time, " onscene time: ", onscene_time, " unit id:", row['Unit ID'])
+                        savingToDictionary(row, response_time_error_dict)
     return response_time_array
 
 
@@ -135,14 +135,15 @@ def mergedict(a,b):
     return a
 
 
-def outputToCSV(Dict):
+def outputToCSV(Dict, outputFileName, thirdColumnName):
 
     print("Writing data to CSV...")
 
-    csv_columns = ['EmergencyResponseDistrict', 'Month', '90th Percentile Response Time']
+    csv_columns = ['EmergencyResponseDistrict', 'Month', thirdColumnName]
+    # csv_columns = ['EmergencyResponseDistrict', 'Month', '90th Percentile Response Time']
 
 
-    with open('mysidewalk-output.csv', 'w', newline='') as csv_file:
+    with open(outputFileName, 'w', newline='') as csv_file:
         csvwriter = csv.writer(csv_file, delimiter='\t')
         csvwriter.writerow(csv_columns)
         for session in Dict:
@@ -151,9 +152,33 @@ def outputToCSV(Dict):
     
     print("Finished creating CSV")
 
+def savingToDictionary(row, dictionary):
+    unit_id = row['Unit ID']
+    month = convertDateToYearMonth(row['Received DtTm'])
+
+    # convert back to string so we can concatenate with unit id
+    month = month.strftime('%Y/%m')
+
+    key = unit_id 
+
+    # Check if given key already exists in dictionary
+    if checkKey(dictionary, key):
+        if checkMonth(dictionary, key, month):
+            # if true, add +1 to count of given unit/month key pair
+            temp_integer = dictionary[key][month]
+            temp_integer += 1
+            dictionary[key][month] = temp_integer
+        else:
+            dictionary[key][month] = 1
+    else:
+        # key doesn't not exist, create dictionary element for key, set count to 1
+        dictionary[key] = {}
+        dictionary[key][month] = 1
+
 
 # create dictionary
 Dict = {}
+response_time_error_dict = {}
 
 response_time = 0
 
@@ -214,31 +239,11 @@ with open(filename) as csvfile:
 
             # only continue if the response time is equal or lower than the ninety percentile value
             if response_time <= ninety_percentile_value:
-                unit_id = row['Unit ID']
-                month = convertDateToYearMonth(row['Received DtTm'])
-
-                # convert back to string so we can concatenate with unit id
-                month = month.strftime('%Y/%m')
-
-                key = unit_id 
-
-                # Check if given key already exists in dictionary
-                if checkKey(Dict, key):
-                    if checkMonth(Dict, key, month):
-                        # if true, add +1 to count of given unit/month key pair
-                        temp_integer = Dict[key][month]
-                        temp_integer += 1
-                        Dict[key][month] = temp_integer
-                    else:
-                        Dict[key][month] = 1
-                else:
-                    # key doesn't not exist, create dictionary element for key, set count to 1
-                    Dict[key] = {}
-                    Dict[key][month] = 1
+                savingToDictionary(row, Dict)
 
 
-
-outputToCSV(Dict)
+outputToCSV(Dict, 'main_output.csv', '90th Percentile Response Time')
+outputToCSV(response_time_error_dict, 'errors_output.csv', 'Error: Negative Response Time')
 
 
 print("Program run time = {} seconds".format(time.time() - starttime))
