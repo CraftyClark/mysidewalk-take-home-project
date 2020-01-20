@@ -6,8 +6,8 @@ import itertools
 import sys
 
 THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-# my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
-my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
+my_file = os.path.join(THIS_FOLDER, 'small_example_input.csv')
+# my_file = os.path.join(THIS_FOLDER, 'Fire_Department_Calls_for_Service.csv')
 
 
 # define the name of the file to read from
@@ -99,7 +99,7 @@ def createResponseTimeArray():
                 # if the received and oncscene time are exactly the same, report time of 0 seconds
                 if onscene_time == received_time:
                     # print("times were the same: ", onscene_time, " -- ", received_time)
-                    response_time_array.append(0)
+                    savingToDictionary(row, response_time_error_dict)
                 else:
                     # find difference between received and onscene time; convert to seconds
                     response_time_object = onscene_time - received_time
@@ -253,7 +253,7 @@ with open(filename) as csvfile:
     print("Finished reading data from input file")
 
 outputToCSV(Dict, 'main_output.csv', '90th Percentile Response Time')
-outputToCSV(response_time_error_dict, 'errors_output.csv', 'Error: Negative Response Time')
+outputToCSV(response_time_error_dict, 'errors_output.csv', 'Error: Negative or Zero Response Time')
 
 
 print("Program run time = {} seconds".format(time.time() - starttime))

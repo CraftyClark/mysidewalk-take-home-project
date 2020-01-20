@@ -1,15 +1,15 @@
 Notes:
 
-Done✔ create logging statements
+Done✔  create logging statements
 
-Done✔ Remove response time not greater than zero logging statements
-Done✔ In instances with negative response time values, save data and later print to an output errors CSV
+Done✔  Remove response time not greater than zero logging statements
+Done✔  In instances with negative response time values, save data and later print to an output errors CSV
 
 
-I need to make a decision on how to handle the cases where the received and onscene time are exactly the same.
-I'm currently including these response times in my data as 0 seconds but this just doesn't really seem fair, 
-and will surely water down the data of response times where they actually need to react to the received phone call. 
-I need to remove these 0 seconds instances from my response time array and add them to my error output file.
+Done✔  I need to make a decision on how to handle the cases where the received and onscene time are exactly the same.
+        I'm currently including these response times in my data as 0 seconds but this just doesn't really seem fair, 
+        and will surely water down the data of response times where they actually need to react to the received phone call. 
+        I need to remove these 0 seconds instances from my response time array and add them to my error output file.
 
 
 Do I really need to loop through data input file twice?
