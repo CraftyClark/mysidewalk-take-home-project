@@ -1,4 +1,5 @@
 # mysidewalk data engineer take home project
+I decided to not upload the large data file to github but you can download the source data input file here-> https://data.sfgov.org/api/views/nuek-vuh3/rows.csv?accessType=DOWNLOAD&bom=true&format=true
  
 How to run program:
 1. Unzip and extract using 7zip
